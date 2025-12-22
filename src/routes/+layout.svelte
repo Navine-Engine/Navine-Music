@@ -488,7 +488,7 @@
 				<a href="/" class="brand" aria-label="Home">
 					<div class="brand__text">
 						<h1 class="brand__title">{data.title}</h1>
-						<p class="brand__subtitle">sailing on PCM tidal waves</p>
+						<p class="brand__subtitle">Immersive Music Player By Euphoria Games</p>
 					</div>
 				</a>
 
