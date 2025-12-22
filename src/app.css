@@ -105,29 +105,3 @@ a[aria-disabled='true'] {
   src: url('/fonts/figtree-v9-latin_latin-ext-700italic.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
        url('/fonts/figtree-v9-latin_latin-ext-700italic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
 }
-button:focus,
-button:focus-visible,
-button:active,
-a:focus,
-a:focus-visible,
-a:active {
-	color: var(--bloom-accent) !important;
-	outline: none;
-	box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.45);
-}
-
-/* Inputs (Search box) */
-input:focus,
-input:focus-visible {
-	outline: none;
-	border-color: var(--bloom-accent);
-	background-color: rgba(246, 193, 209, 0.12); /* sakura tint */
-	box-shadow:
-		0 0 0 3px rgba(167, 139, 250, 0.35),
-		inset 0 0 0 1px rgba(249, 215, 227, 0.25);
-}
-
-/* Prevent visited links from turning blue */
-a:visited {
-	color: inherit;
-}
