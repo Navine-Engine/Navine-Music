@@ -483,7 +483,7 @@
 	<div class="app-root">
 		<DynamicBackgroundWebGL />
 		<div class="app-shell">
-			<header class="app-header glass-panel" bind:clientHeight={headerHeight}>
+			<header class="app-header" bind:clientHeight={headerHeight}>
 			<div class="app-header__inner">
 				<a href="/" class="brand" aria-label="Home">
 					<div class="brand__text">
