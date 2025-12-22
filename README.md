@@ -1,5 +1,5 @@
-# Made By HitBoyXx23 All Right Reserved By Euphoria Games
-# lossless-ui
+# Made By HitBoyXx23 All Right Reserved By Navine
+ lossless-ui
 
 High-fidelity music streaming UI built with SvelteKit and Tailwind.
 
