@@ -1,4 +1,5 @@
-# Made By HitBoyXx23 All Right Reserved By Navine
+# Made By HitBoyXx23 Stupid Zach wants credit he owner of Navine
+# All Right Reserved By Navine
  lossless-ui
 
 High-fidelity music streaming UI built with SvelteKit and Tailwind.
