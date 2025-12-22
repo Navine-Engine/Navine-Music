@@ -23,7 +23,7 @@
 
 <svelte:head>
 	<title>{data.title}</title>
-	<meta name="description" content="Cool music streaming haha" />
+	<meta name="description" content="Amazing music streaming By Navine" />
 </svelte:head>
 
 <div class="space-y-8">
