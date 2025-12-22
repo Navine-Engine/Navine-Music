@@ -2,6 +2,42 @@
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
 
+/* =========================
+   Sakura / Purple Theme Vars
+   ========================= */
+:root {
+  --bg-main: radial-gradient(
+    circle at top,
+    #2b1645 0%,
+    #1a1025 45%,
+    #0f0718 100%
+  );
+
+  --glass-bg: rgba(246, 193, 209, 0.12);
+  --glass-border: rgba(249, 215, 227, 0.25);
+
+  --accent-main: #a78bfa;
+  --accent-hover: #c4b5fd;
+  --accent-strong: #6d28d9;
+
+  --sakura-main: #f6c1d1;
+  --sakura-soft: #f9d7e3;
+  --text-main: #fdf4ff;
+}
+
+/* =========================
+   Global Background
+   ========================= */
+html,
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Figtree', system-ui, sans-serif;
+}
+
+/* =========================
+   Buttons & Links
+   ========================= */
 button,
 [type='button'],
 [type='submit'],
@@ -9,19 +45,80 @@ button,
 a,
 [role='button'],
 summary {
-	cursor: pointer;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    var(--accent-main),
+    var(--sakura-main)
+  );
+  color: #1a1025;
+  border-radius: 0.75rem;
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 8px 24px rgba(167, 139, 250, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
 }
 
+button:hover,
+a:hover,
+[role='button']:hover {
+  background: linear-gradient(
+    135deg,
+    var(--accent-hover),
+    var(--sakura-soft)
+  );
+  transform: translateY(-1px);
+  box-shadow:
+    0 12px 30px rgba(246, 193, 209, 0.45);
+}
+
+/* Disabled */
 button:disabled,
 [type='button']:disabled,
 [type='submit']:disabled,
 [type='reset']:disabled,
 [role='button'][aria-disabled='true'],
 a[aria-disabled='true'] {
-	cursor: not-allowed;
+  cursor: not-allowed;
+  opacity: 0.45;
+  box-shadow: none;
 }
 
-/* Performance-optimized blur and effects */
+/* =========================
+   Glass Panels / UI
+   ========================= */
+.glass-panel,
+.glass-toolbar,
+.settings-menu,
+.glass-option,
+.glass-action,
+.glass-panel__footer {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--perf-blur-medium)) saturate(var(--perf-saturate));
+  -webkit-backdrop-filter: blur(var(--perf-blur-medium)) saturate(var(--perf-saturate));
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 20px 40px rgba(167, 139, 250, 0.25);
+  border-radius: 1rem;
+}
+
+/* Toolbar buttons */
+.toolbar-button {
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.6),
+    rgba(246, 193, 209, 0.6)
+  );
+  border: 1px solid var(--glass-border);
+}
+
+/* =========================
+   Performance Modes
+   ========================= */
 :root[data-performance='medium'] {
   --perf-blur-high: 22px;
   --perf-blur-medium: 18px;
@@ -47,61 +144,54 @@ a[aria-disabled='true'] {
 :root[data-performance='low'] .toolbar-button,
 :root[data-performance='low'] .glass-option,
 :root[data-performance='low'] .glass-action,
-:root[data-performance='low'] .glass-option__chip,
-:root[data-performance='low'] .glass-panel__footer,
-:root[data-performance='low'] .navigation-overlay,
-:root[data-performance='low'] .navigation-overlay__progress {
-  background-color: rgba(15, 23, 42, 0.92) !important;
-  border-color: rgba(148, 163, 184, 0.2) !important;
+:root[data-performance='low'] .glass-panel__footer {
+  background-color: #1a1025 !important;
+  border-color: rgba(246, 193, 209, 0.25) !important;
   box-shadow: none !important;
 }
 
-:root[data-performance='low'] .toolbar-button,
-:root[data-performance='low'] .glass-option,
-:root[data-performance='low'] .glass-action {
-  transition: none;
-}
-
 :root:not([data-performance='medium']):not([data-performance='low']) {
-	--perf-blur-high: 32px;
-	--perf-blur-medium: 28px;
-	--perf-blur-low: 24px;
-	--perf-saturate: 160%;
+  --perf-blur-high: 32px;
+  --perf-blur-medium: 28px;
+  --perf-blur-low: 24px;
+  --perf-saturate: 160%;
 }
 
-/* figtree-regular - latin_latin-ext */
+/* =========================
+   Fonts (unchanged)
+   ========================= */
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: 'Figtree';
   font-style: normal;
   font-weight: 400;
-  src: url('/fonts/figtree-v9-latin_latin-ext-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('/fonts/figtree-v9-latin_latin-ext-regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+  src: url('/fonts/figtree-v9-latin_latin-ext-regular.woff2') format('woff2'),
+       url('/fonts/figtree-v9-latin_latin-ext-regular.ttf') format('truetype');
 }
-/* figtree-italic - latin_latin-ext */
+
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: 'Figtree';
   font-style: italic;
   font-weight: 400;
-  src: url('/fonts/figtree-v9-latin_latin-ext-italic.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('/fonts/figtree-v9-latin_latin-ext-italic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+  src: url('/fonts/figtree-v9-latin_latin-ext-italic.woff2') format('woff2'),
+       url('/fonts/figtree-v9-latin_latin-ext-italic.ttf') format('truetype');
 }
-/* figtree-700 - latin_latin-ext */
+
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: 'Figtree';
   font-style: normal;
   font-weight: 700;
-  src: url('/fonts/figtree-v9-latin_latin-ext-700.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('/fonts/figtree-v9-latin_latin-ext-700.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+  src: url('/fonts/figtree-v9-latin_latin-ext-700.woff2') format('woff2'),
+       url('/fonts/figtree-v9-latin_latin-ext-700.ttf') format('truetype');
 }
-/* figtree-700italic - latin_latin-ext */
+
 @font-face {
-  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-display: swap;
   font-family: 'Figtree';
   font-style: italic;
   font-weight: 700;
-  src: url('/fonts/figtree-v9-latin_latin-ext-700italic.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
-       url('/fonts/figtree-v9-latin_latin-ext-700italic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
+  src: url('/fonts/figtree-v9-latin_latin-ext-700italic.woff2') format('woff2'),
+       url('/fonts/figtree-v9-latin_latin-ext-700italic.ttf') format('truetype');
 }
