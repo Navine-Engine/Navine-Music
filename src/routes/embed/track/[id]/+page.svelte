@@ -116,7 +116,7 @@
                 {/if}
 
                 <a href="/track/{track.id}" target="_blank" class="open-link">
-                    <span>Open in BiniLossless</span>
+                    <span>Open in Navine</span>
                     <ExternalLink size={12} />
                 </a>
             </div>
