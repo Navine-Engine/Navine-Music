@@ -748,10 +748,10 @@
 
 <style>
 	:global(:root) {
-		--bloom-primary: #4a1d96;
-		--bloom-secondary: #6d28d9;
-		--bloom-accent: #c084fc;
-		--bloom-glow: rgba(216, 180, 254, 0.35);
+		--bloom-primary: #5b21b6;
+		--bloom-secondary: #7c3aed;
+		--bloom-accent: #a78bfa;
+		--bloom-glow: rgba(196, 181, 253, 0.4);
 		--bloom-tertiary: rgba(167, 139, 250, 0.32);
 		--bloom-quaternary: rgba(124, 58, 237, 0.28);
 		--surface-color: rgba(30, 41, 59, 0.8);
@@ -1072,11 +1072,11 @@
 	}
 
 	.glass-option.is-active {
-		border-color: var(--bloom-accent, rgba(59, 130, 246, 0.6));
+		border-color: var(--bloom-accent, rgba(124, 58, 237, 0.6));
 		background: transparent;
 		box-shadow: 
-			0 12px 28px rgba(59, 130, 246, 0.2),
-			inset 0 0 32px rgba(59, 130, 246, 0.06);
+			0 12px 28px rgba(124, 58, 237, 0.2),
+			inset 0 0 32px rgba(124, 58, 237, 0.1);
 	}
 
 	.glass-option__content {
@@ -1100,7 +1100,7 @@
 	}
 
 	.glass-option__check {
-		color: rgba(191, 219, 254, 0.95);
+		color: rgba(216, 180, 254, 0.95);
 		flex-shrink: 0;
 	}
 
@@ -1122,9 +1122,9 @@
 	}
 
 	.glass-option__chip.is-active {
-		border-color: var(--bloom-accent, rgba(59, 130, 246, 0.7));
-		color: rgba(219, 234, 254, 0.95);
-		box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.15);
+		border-color: var(--bloom-accent, rgba(124, 58, 237, 0.7));
+		color: rgba(233, 213, 255, 0.95);
+		box-shadow: inset 0 0 20px rgba(124, 58, 237, 0.2);
 	}
 
 	.settings-section--bordered {
@@ -1163,8 +1163,8 @@
 
 	.glass-action:hover:not(:disabled) {
 		transform: translateY(-1px);
-		border-color: rgba(148, 163, 184, 0.32);
-		box-shadow: 0 10px 28px rgba(8, 11, 19, 0.28);
+		border-color: rgba(147, 51, 234, 0.4);
+		box-shadow: 0 10px 28px rgba(76, 29, 149, 0.2);
 	}
 
 	.glass-action__label {
