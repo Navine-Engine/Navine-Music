@@ -695,17 +695,28 @@
 						{/if}
 					</div>
 				</header>
-								fill="#fff"
-							/>
-						</svg>
-					</a>
-				</div>
-			</div>
-		</header>
 
-		<main
-			class="app-main glass-panel !mb-56 !sm:mb-40"
-			style={`min-height: ${mainMinHeight}px; margin-bottom: ${mainMarginBottom}px;`}
+				<main
+					class="app-main glass-panel !mb-56 !sm:mb-40"
+					style={`min-height: ${mainMinHeight}px; margin-bottom: ${mainMarginBottom}px;`}
+				>
+					<div class="app-main__inner">
+						{@render children?.()}
+					</div>
+				</main>
+
+				<AudioPlayer onHeightChange={handlePlayerHeight} />
+			</div>
+		</div>
+
+		<LyricsPopup />
+	{/if}
+
+	<!--
+	{#if navigationState}
+		<div
+			transition:fade={{ duration: 200 }}
+			class="navigation-overlay"
 		>
 			<div class="app-main__inner">
 				{@render children?.()}
