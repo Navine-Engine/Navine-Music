@@ -755,17 +755,21 @@
 
 <style>
 	:global(:root) {
-		--bloom-primary: #0f172a;
-		--bloom-secondary: #1f2937;
-		--bloom-accent: #3b82f6;
-		--bloom-glow: rgba(59, 130, 246, 0.35);
-		--bloom-tertiary: rgba(99, 102, 241, 0.32);
-		--bloom-quaternary: rgba(30, 64, 175, 0.28);
-		--surface-color: rgba(15, 23, 42, 0.68);
-		--surface-border: rgba(148, 163, 184, 0.18);
-		--surface-highlight: rgba(148, 163, 184, 0.35);
-		--accent-color: var(--bloom-accent);
-	}
+	--bloom-primary: #2b1645; /* deep sakura purple */
+	--bloom-secondary: #1a1025;
+	--bloom-accent: #a78bfa; /* lavender sakura */
+	--bloom-glow: rgba(167, 139, 250, 0.35);
+
+	--bloom-tertiary: rgba(244, 167, 255, 0.32);   /* soft pink glow */
+	--bloom-quaternary: rgba(255, 182, 213, 0.28);/* cherry tint */
+
+	--surface-color: rgba(26, 16, 37, 0.72);
+	--surface-border: rgba(249, 215, 227, 0.22);
+	--surface-highlight: rgba(249, 215, 227, 0.35);
+
+	--accent-color: var(--bloom-accent);
+}
+
 
 	:global(body) {
 		margin: 0;
