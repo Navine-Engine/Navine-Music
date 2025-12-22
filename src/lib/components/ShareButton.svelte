@@ -27,7 +27,7 @@
 	let buttonRef: HTMLButtonElement | null = null;
 
 	function getLongLink() {
-		return `https://music.binimum.org/${type}/${id}`;
+		return `https://navine-music.vercel.app/${type}/${id}`;
 	}
 
 	function getShortLink() {
@@ -41,8 +41,8 @@
 	}
 
 	function getEmbedCode() {
-        if (type === "track") return `<iframe src="https://music.binimum.org/embed/${type}/${id}" width="100%" height="150" style="border:none; overflow:hidden; border-radius: 0.5em;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
-		return `<iframe src="https://music.binimum.org/embed/${type}/${id}" width="100%" height="450" style="border:none; overflow:hidden; border-radius: 0.5em;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+        if (type === "track") return `<iframe src="https://navine-music.vercel.app/embed/${type}/${id}" width="100%" height="150" style="border:none; overflow:hidden; border-radius: 0.5em;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
+		return `<iframe src="https://navine-music.vercel.app/embed/${type}/${id}" width="100%" height="450" style="border:none; overflow:hidden; border-radius: 0.5em;" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>`;
 	}
 
 	async function copyToClipboard(text: string) {
