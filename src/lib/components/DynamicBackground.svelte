@@ -814,10 +814,10 @@
 		position: absolute;
 		inset: 0;
 		background: 
-			radial-gradient(ellipse at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-			radial-gradient(ellipse at 80% 70%, rgba(99, 102, 241, 0.12) 0%, transparent 50%),
-			radial-gradient(ellipse at 50% 50%, rgba(139, 92, 246, 0.08) 0%, transparent 60%),
-			linear-gradient(135deg, #0a0e1a 0%, #0f172a 50%, #1e293b 100%);
+			radial-gradient(ellipse at 20% 30%, rgba(100, 110, 130, 0.15) 0%, transparent 50%),
+			radial-gradient(ellipse at 80% 70%, rgba(70, 80, 90, 0.12) 0%, transparent 50%),
+			radial-gradient(ellipse at 50% 50%, rgba(60, 70, 80, 0.08) 0%, transparent 60%),
+			linear-gradient(135deg, #0a0e1a 0%, #0f121a 50%, #1a1d24 100%);
 		animation: ambient-float 20s ease-in-out infinite;
 	}
 
