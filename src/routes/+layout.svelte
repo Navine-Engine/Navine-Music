@@ -755,14 +755,14 @@
 
 <style>
 	:global(:root) {
-		--bloom-primary: #1e1b4b;
-		--bloom-secondary: #2e1f7a;
-		--bloom-accent: #8b5cf6;
-		--bloom-glow: rgba(59, 130, 246, 0.35);
-		--bloom-tertiary: rgba(99, 102, 241, 0.32);
-		--bloom-quaternary: rgba(30, 64, 175, 0.28);
-		--surface-color: rgba(15, 23, 42, 0.68);
-		--surface-border: rgba(148, 163, 184, 0.18);
+		--bloom-primary: #4a1d96;
+		--bloom-secondary: #6d28d9;
+		--bloom-accent: #c084fc;
+		--bloom-glow: rgba(216, 180, 254, 0.35);
+		--bloom-tertiary: rgba(167, 139, 250, 0.32);
+		--bloom-quaternary: rgba(124, 58, 237, 0.28);
+		--surface-color: rgba(30, 41, 59, 0.8);
+		--surface-border: rgba(200, 181, 254, 0.18);
 		--surface-highlight: rgba(148, 163, 184, 0.35);
 		--accent-color: var(--bloom-accent);
 	}
