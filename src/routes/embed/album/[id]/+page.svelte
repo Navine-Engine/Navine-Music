@@ -109,7 +109,7 @@
                 <h1 class="title" title={album.title}>{album.title}</h1>
                 <p class="artist" title={album.artist.name}>{album.artist.name}</p>
                 <a href="/album/{album.id}" target="_blank" class="open-link">
-                    <span>Open Album in BiniLossless</span>
+                    <span>Open Album in Navine</span>
                     <ExternalLink size={12} />
                 </a>
             </div>
