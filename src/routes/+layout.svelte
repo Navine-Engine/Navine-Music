@@ -697,7 +697,7 @@
 					<a
 						target="_blank"
 						rel="noopener noreferrer"
-						href="https://github.com/hitboyxx23-dev/Euhporia-Music"
+						href="https://github.com/HitBoyXx23-dev/Euphoria-Music/"
 						class="toolbar-icon"
 						aria-label="Project GitHub"
 					>
