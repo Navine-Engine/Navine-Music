@@ -755,9 +755,9 @@
 
 <style>
 	:global(:root) {
-		--bloom-primary: #0f172a;
-		--bloom-secondary: #1f2937;
-		--bloom-accent: #3b82f6;
+		--bloom-primary: #1e1b4b;
+		--bloom-secondary: #2e1f7a;
+		--bloom-accent: #8b5cf6;
 		--bloom-glow: rgba(59, 130, 246, 0.35);
 		--bloom-tertiary: rgba(99, 102, 241, 0.32);
 		--bloom-quaternary: rgba(30, 64, 175, 0.28);
