@@ -112,7 +112,7 @@
                 <h1 class="title" title={playlist.title}>{playlist.title}</h1>
                 <p class="subtitle" title={playlist.description}>{playlist.description || 'Playlist'}</p>
                 <a href="/playlist/{playlist.uuid}" target="_blank" class="open-link">
-                    <span>Open Playlist in Navine</span>
+                    <span>Open Playlist in Navine Music</span>
                     <ExternalLink size={12} />
                 </a>
             </div>
