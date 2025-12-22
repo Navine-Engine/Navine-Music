@@ -801,14 +801,15 @@
 </div>
 
 <style>
-	.webgl-background {
-		position: fixed;
-		inset: 0;
-		z-index: 0;
-		pointer-events: none;
-		overflow: hidden;
-		background: #0a0e1a;
-	}
+	..webgl-background {
+	position: fixed;
+	inset: 0;
+	z-index: 0;
+	pointer-events: none;
+	overflow: hidden;
+	background: #020617;
+}
+
 
 	.default-background {
 	position: absolute;
