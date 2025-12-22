@@ -112,7 +112,7 @@
                 <h1 class="title" title={artist.name}>{artist.name}</h1>
                 <p class="subtitle">Top Tracks</p>
                 <a href="/artist/{artist.id}" target="_blank" class="open-link">
-                    <span>Open Artist in Navine</span>
+                    <span>Open Artist in Navine Music</span>
                     <ExternalLink size={12} />
                 </a>
             </div>
