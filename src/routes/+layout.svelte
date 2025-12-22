@@ -471,7 +471,7 @@
 	<link rel="icon" href={favicon} />
 	<link rel="manifest" href="/manifest.webmanifest" />
 	<link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
-	<meta name="theme-color" content="#0f172a" />
+	<meta name="theme-color" content="#4a1d96" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 </svelte:head>
@@ -487,8 +487,8 @@
 			<div class="app-header__inner">
 				<a href="/" class="brand" aria-label="Home">
 					<div class="brand__text">
-						<h1 class="brand__title">{data.title}</h1>
-						<p class="brand__subtitle">sailing on PCM tidal waves</p>
+						<h1 class="brand__title">Euphoria Music</h1>
+						<p class="brand__subtitle">immersive audio experience</p>
 					</div>
 				</a>
 
