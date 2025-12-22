@@ -817,28 +817,28 @@
 	background:
 		radial-gradient(
 			ellipse at 20% 30%,
-			rgba(255, 170, 220, 0.18) 0%,
+			rgba(125, 211, 252, 0.18), /* light blue */
 			transparent 55%
 		),
 		radial-gradient(
 			ellipse at 80% 65%,
-			rgba(180, 120, 255, 0.16) 0%,
+			rgba(56, 189, 248, 0.16),
 			transparent 55%
 		),
 		radial-gradient(
 			ellipse at 50% 50%,
-			rgba(140, 90, 200, 0.12) 0%,
+			rgba(30, 64, 175, 0.14), /* navy glow */
 			transparent 60%
 		),
 		linear-gradient(
 			135deg,
-			#1a0826 0%,
-			#2b0f3a 40%,
-			#3a144d 70%,
-			#2a0c35 100%
+			#000080 0%,   /* navy */
+			#020617 45%,  /* black */
+			#020617 100%
 		);
 	animation: ambient-float 20s ease-in-out infinite;
 }
+
 
 
 	@keyframes ambient-float {
