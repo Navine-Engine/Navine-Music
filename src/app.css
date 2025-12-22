@@ -3,9 +3,11 @@
 @plugin '@tailwindcss/typography';
 
 /* =========================
-   Sakura / Purple Theme Vars
+   THEME VARIABLES
+   Sakura = DEFAULT ONLY
    ========================= */
 :root {
+  /* Background (static) */
   --bg-main: radial-gradient(
     circle at top,
     #2b1645 0%,
@@ -13,20 +15,21 @@
     #0f0718 100%
   );
 
+  /* Glass */
   --glass-bg: rgba(246, 193, 209, 0.12);
   --glass-border: rgba(249, 215, 227, 0.25);
 
-  --accent-main: #a78bfa;
-  --accent-hover: #c4b5fd;
-  --accent-strong: #6d28d9;
+  /* 🔑 ACCENT COLORS (DYNAMIC) */
+  /* These get overridden by WebGL */
+  --bloom-accent: #a78bfa;        /* sakura fallback */
+  --bloom-glow: rgba(167, 139, 250, 0.35);
 
-  --sakura-main: #f6c1d1;
-  --sakura-soft: #f9d7e3;
+  /* Text */
   --text-main: #fdf4ff;
 }
 
 /* =========================
-   Global Background
+   Global Base
    ========================= */
 html,
 body {
@@ -46,17 +49,22 @@ a,
 [role='button'],
 summary {
   cursor: pointer;
+
+  /* ✅ NOW DRIVEN BY --bloom-accent */
   background: linear-gradient(
     135deg,
-    var(--accent-main),
-    var(--sakura-main)
+    var(--bloom-accent),
+    color-mix(in srgb, var(--bloom-accent) 70%, white)
   );
-  color: #1a1025;
+
+  color: #120a1a;
   border-radius: 0.75rem;
   border: 1px solid var(--glass-border);
+
   box-shadow:
-    0 8px 24px rgba(167, 139, 250, 0.35),
+    0 8px 24px var(--bloom-glow),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease,
@@ -68,12 +76,13 @@ a:hover,
 [role='button']:hover {
   background: linear-gradient(
     135deg,
-    var(--accent-hover),
-    var(--sakura-soft)
+    color-mix(in srgb, var(--bloom-accent) 85%, white),
+    color-mix(in srgb, var(--bloom-accent) 65%, white)
   );
+
   transform: translateY(-1px);
   box-shadow:
-    0 12px 30px rgba(246, 193, 209, 0.45);
+    0 12px 30px var(--bloom-glow);
 }
 
 /* Disabled */
@@ -100,9 +109,12 @@ a[aria-disabled='true'] {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--perf-blur-medium)) saturate(var(--perf-saturate));
   -webkit-backdrop-filter: blur(var(--perf-blur-medium)) saturate(var(--perf-saturate));
+
   border: 1px solid var(--glass-border);
+
   box-shadow:
-    0 20px 40px rgba(167, 139, 250, 0.25);
+    0 20px 40px color-mix(in srgb, var(--bloom-accent) 35%, transparent);
+
   border-radius: 1rem;
 }
 
@@ -110,9 +122,10 @@ a[aria-disabled='true'] {
 .toolbar-button {
   background: linear-gradient(
     135deg,
-    rgba(167, 139, 250, 0.6),
-    rgba(246, 193, 209, 0.6)
+    color-mix(in srgb, var(--bloom-accent) 65%, transparent),
+    color-mix(in srgb, var(--bloom-accent) 45%, transparent)
   );
+
   border: 1px solid var(--glass-border);
 }
 
@@ -146,7 +159,7 @@ a[aria-disabled='true'] {
 :root[data-performance='low'] .glass-action,
 :root[data-performance='low'] .glass-panel__footer {
   background-color: #1a1025 !important;
-  border-color: rgba(246, 193, 209, 0.25) !important;
+  border-color: var(--glass-border) !important;
   box-shadow: none !important;
 }
 
