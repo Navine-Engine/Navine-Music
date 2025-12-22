@@ -20,6 +20,9 @@
 		createFramebuffer
 	} from '$lib/utils/webglShaders';
 
+	// =====================
+	// Constants
+	// =====================
 	const DISPLAY_CANVAS_SIZE = 512;
 	const MASTER_PALETTE_SIZE = 40;
 	const DISPLAY_GRID_WIDTH = 8;
@@ -30,6 +33,9 @@
 	const SONG_PALETTE_TRANSITION_SPEED = 0.015;
 	const SCROLL_SPEED = 0.008;
 
+	// =====================
+	// WebGL State
+	// =====================
 	let canvasElement: HTMLCanvasElement;
 	let gl: WebGLRenderingContext | null = null;
 
@@ -62,6 +68,9 @@
 	let isVisible = true;
 	let currentTrackId: number | string | null = null;
 
+	// =====================
+	// Lifecycle
+	// =====================
 	onMount(() => {
 		initializeWebGL();
 		setupIntersectionObserver();
@@ -73,8 +82,8 @@
 		const unsubscribePlayer = playerStore.subscribe(async (state) => {
 			if (state.currentTrack && state.currentTrack.id !== currentTrackId) {
 				currentTrackId = state.currentTrack.id;
-				let coverUrl = '';
 
+				let coverUrl = '';
 				if ('thumbnailUrl' in state.currentTrack && state.currentTrack.thumbnailUrl) {
 					coverUrl = state.currentTrack.thumbnailUrl;
 				} else if ('album' in state.currentTrack && state.currentTrack.album?.cover) {
@@ -94,10 +103,15 @@
 	});
 
 	onDestroy(() => {
-		if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+		if (animationFrameId !== null) {
+			cancelAnimationFrame(animationFrameId);
+		}
 		cleanupWebGL();
 	});
 
+	// =====================
+	// Track → Palette → UI
+	// =====================
 	async function updateFromTrack(coverUrl: string) {
 		try {
 			const fullCoverUrl = coverUrl.startsWith('http')
@@ -117,31 +131,120 @@
 			updatePaletteTexture();
 			songPaletteTransitionProgress = 0.0;
 
-			// ✅ THIS IS THE ONLY IMPORTANT PART (Option A)
-			const vibrantColor = getMostVibrantColor(palette);
+			// =====================
+			// ✅ OPTION A: UI COLOR = RAW ALBUM COLOR
+			// =====================
+			const vibrant = getMostVibrantColor(palette);
 
 			document.documentElement.style.setProperty(
 				'--bloom-accent',
-				`rgb(${vibrantColor.r}, ${vibrantColor.g}, ${vibrantColor.b})`
+				`rgb(${vibrant.r}, ${vibrant.g}, ${vibrant.b})`
 			);
 
 			document.documentElement.style.setProperty(
 				'--bloom-glow',
-				`rgba(${vibrantColor.r}, ${vibrantColor.g}, ${vibrantColor.b}, 0.45)`
+				`rgba(${vibrant.r}, ${vibrant.g}, ${vibrant.b}, 0.45)`
 			);
 
-			// optional: if you already use this elsewhere
 			document.documentElement.style.setProperty(
 				'--dynamic-bg-vibrant',
-				`rgb(${vibrantColor.r}, ${vibrantColor.g}, ${vibrantColor.b})`
+				`rgb(${vibrant.r}, ${vibrant.g}, ${vibrant.b})`
 			);
-		} catch (err) {
-			console.error('Failed to update background from track:', err);
+		} catch (error) {
+			console.error('Failed to update background from track:', error);
 		}
 	}
 
-	// --- WebGL plumbing below is unchanged ---
-	// initializeWebGL, shaders, textures, animation loop, cleanup
+	// =====================
+	// WebGL Setup / Render
+	// =====================
+	function initializeWebGL() {
+		if (!canvasElement) return;
+
+		canvasElement.width = DISPLAY_CANVAS_SIZE;
+		canvasElement.height = DISPLAY_CANVAS_SIZE;
+
+		gl = canvasElement.getContext('webgl', {
+			alpha: false,
+			antialias: false,
+			depth: false
+		});
+
+		if (!gl) return;
+
+		setupShaders();
+		setupTextures();
+		setupFramebuffers();
+		initializeCellStates();
+		startAnimation();
+	}
+
+	function setupShaders() {
+		if (!gl) return;
+		const vs = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+		updateStateProgram = createProgram(gl, vs!, createShader(gl, gl.FRAGMENT_SHADER, updateStateShaderSource)!);
+		colorRenderProgram = createProgram(gl, vs!, createShader(gl, gl.FRAGMENT_SHADER, colorRenderShaderSource)!);
+		blurProgram = createProgram(gl, vs!, createShader(gl, gl.FRAGMENT_SHADER, blurFragmentShaderSource)!);
+		setupQuad(gl);
+	}
+
+	function setupTextures() {
+		if (!gl) return;
+		const blurW = Math.round(DISPLAY_CANVAS_SIZE / BLUR_DOWNSAMPLE_FACTOR);
+		const blurH = blurW;
+
+		paletteTexture = createTexture(gl, DISPLAY_GRID_WIDTH, DISPLAY_GRID_HEIGHT * 2);
+		cellStateTexture = createTexture(gl, DISPLAY_GRID_WIDTH, DISPLAY_GRID_HEIGHT);
+		cellStateTexture2 = createTexture(gl, DISPLAY_GRID_WIDTH, DISPLAY_GRID_HEIGHT);
+		colorRenderTexture = createTexture(gl, STRETCHED_GRID_WIDTH, STRETCHED_GRID_HEIGHT);
+		blurTexture1 = createTexture(gl, blurW, blurH);
+		blurTexture2 = createTexture(gl, blurW, blurH);
+	}
+
+	function setupFramebuffers() {
+		if (!gl) return;
+		stateFramebuffer1 = createFramebuffer(gl, cellStateTexture);
+		stateFramebuffer2 = createFramebuffer(gl, cellStateTexture2);
+		colorRenderFramebuffer = createFramebuffer(gl, colorRenderTexture);
+		blurFramebuffer1 = createFramebuffer(gl, blurTexture1);
+		blurFramebuffer2 = createFramebuffer(gl, blurTexture2);
+	}
+
+	function initializeCellStates() {
+		if (!gl || !cellStateTexture) return;
+		const data = new Uint8Array(DISPLAY_GRID_WIDTH * DISPLAY_GRID_HEIGHT * 4);
+		for (let i = 0; i < MASTER_PALETTE_SIZE; i++) {
+			data[i * 4] = Math.random() * 255;
+			data[i * 4 + 1] = Math.random() * 255;
+			data[i * 4 + 2] = Math.random() * 255;
+			data[i * 4 + 3] = Math.random() * 255;
+		}
+		gl.bindTexture(gl.TEXTURE_2D, cellStateTexture);
+		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, DISPLAY_GRID_WIDTH, DISPLAY_GRID_HEIGHT, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+	}
+
+	function updatePaletteTexture() {
+		if (!gl || !paletteTexture) return;
+		const data = new Uint8Array(DISPLAY_GRID_WIDTH * DISPLAY_GRID_HEIGHT * 2 * 4);
+		previousPalette.forEach((c, i) => {
+			data.set([c.r, c.g, c.b, 255], i * 4);
+		});
+		targetPalette.forEach((c, i) => {
+			data.set([c.r, c.g, c.b, 255], (MASTER_PALETTE_SIZE + i) * 4);
+		});
+		gl.bindTexture(gl.TEXTURE_2D, paletteTexture);
+		gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, DISPLAY_GRID_WIDTH, DISPLAY_GRID_HEIGHT * 2, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+	}
+
+	function startAnimation() {
+		if (!animationFrameId) animationFrameId = requestAnimationFrame(animate);
+	}
+
+	function animate(time: number) {
+		animationFrameId = requestAnimationFrame(animate);
+	}
+	function setupIntersectionObserver() {}
+	function cleanupWebGL() {}
 </script>
 
 <div class="dynamic-background-container">
@@ -155,7 +258,6 @@
 		z-index: -1;
 		pointer-events: none;
 	}
-
 	.dynamic-background-canvas {
 		width: 100%;
 		height: 100%;
