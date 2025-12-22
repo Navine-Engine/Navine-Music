@@ -105,3 +105,19 @@ a[aria-disabled='true'] {
   src: url('/fonts/figtree-v9-latin_latin-ext-700italic.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
        url('/fonts/figtree-v9-latin_latin-ext-700italic.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5+, IE 9+, Safari 3.1+, iOS 4.2+, Android Browser 2.2+ */
 }
+button:focus,
+button:focus-visible,
+input:focus,
+input:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.45);
+	background-color: rgba(167, 139, 250, 0.12);
+}
+
+/* Stop blue text on click / focus */
+a:focus,
+a:active,
+a:visited,
+button:active {
+	color: inherit !important;
+}
