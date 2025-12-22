@@ -31,7 +31,7 @@
 	import { type Track, type AudioQuality, type PlayableTrack, isSonglinkTrack } from '$lib/types';
 
 	let { children, data } = $props();
-	const pageTitle = $derived(data?.title ?? 'Euphoria Music');
+	const pageTitle = $derived(data?.title ?? 'Navine Music');
 	let headerHeight = $state(0);
 	let playerHeight = $state(0);
 	let viewportHeight = $state(0);
@@ -176,7 +176,7 @@
 			const artist = isSonglinkTrack(track) ? track.artistName : formatArtists(track.artists);
 			const title = track.title ?? 'Unknown Track';
 			const prefix = isPlaying ? '▶' : '⏸';
-			document.title = `${prefix} ${title} • ${artist} | Euphoria Music`;
+			document.title = `${prefix} ${title} • ${artist} | Navine Music`;
 		} else {
 			document.title = pageTitle;
 		}
@@ -488,7 +488,7 @@
 				<a href="/" class="brand" aria-label="Home">
 					<div class="brand__text">
 						<h1 class="brand__title">{data.title}</h1>
-						<p class="brand__subtitle">Immersive Music Player By Euphoria Games</p>
+						<p class="brand__subtitle">Immersive Music Player By Navine</p>
 					</div>
 				</a>
 
@@ -697,7 +697,7 @@
 					<a
 						target="_blank"
 						rel="noopener noreferrer"
-						href="https://github.com/HitBoyXx23-dev/Euphoria-Music/"
+						href="https://github.com/Navine-Engine/Navine-Music/"
 						class="toolbar-icon"
 						aria-label="Project GitHub"
 					>
@@ -755,21 +755,23 @@
 
 <style>
 	:global(:root) {
-	--bloom-primary: #2b1645; /* deep sakura purple */
-	--bloom-secondary: #1a1025;
-	--bloom-accent: #a78bfa; /* lavender sakura */
-	--bloom-glow: rgba(167, 139, 250, 0.35);
+	/* Core palette */
+	--bloom-primary: #000080;            /* navy */
+	--bloom-secondary: #020617;          /* near-black */
+	--bloom-accent: #7dd3fc;             /* light blue */
+	--bloom-glow: rgba(125, 211, 252, 0.35);
 
-	--bloom-tertiary: rgba(244, 167, 255, 0.32);   /* soft pink glow */
-	--bloom-quaternary: rgba(255, 182, 213, 0.28);/* cherry tint */
+	/* Subtle glow layers */
+	--bloom-tertiary: rgba(56, 189, 248, 0.25);
+	--bloom-quaternary: rgba(186, 230, 253, 0.18);
 
-	--surface-color: rgba(26, 16, 37, 0.72);
-	--surface-border: rgba(249, 215, 227, 0.22);
-	--surface-highlight: rgba(249, 215, 227, 0.35);
+	/* Glass surfaces */
+	--surface-color: rgba(2, 6, 23, 0.72);
+	--surface-border: rgba(125, 211, 252, 0.22);
+	--surface-highlight: rgba(186, 230, 253, 0.35);
 
 	--accent-color: var(--bloom-accent);
 }
-
 
 	:global(body) {
 		margin: 0;
