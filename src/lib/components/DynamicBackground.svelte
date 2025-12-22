@@ -801,7 +801,7 @@
 </div>
 
 <style>
-	..webgl-background {
+	.webgl-background {
 	position: fixed;
 	inset: 0;
 	z-index: 0;
