@@ -811,15 +811,34 @@
 	}
 
 	.default-background {
-		position: absolute;
-		inset: 0;
-		background: 
-			radial-gradient(ellipse at 20% 30%, rgba(100, 110, 130, 0.15) 0%, transparent 50%),
-			radial-gradient(ellipse at 80% 70%, rgba(70, 80, 90, 0.12) 0%, transparent 50%),
-			radial-gradient(ellipse at 50% 50%, rgba(60, 70, 80, 0.08) 0%, transparent 60%),
-			linear-gradient(135deg, #0a0e1a 0%, #0f121a 50%, #1a1d24 100%);
-		animation: ambient-float 20s ease-in-out infinite;
-	}
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(
+			ellipse at 20% 30%,
+			rgba(255, 170, 220, 0.18) 0%,
+			transparent 55%
+		),
+		radial-gradient(
+			ellipse at 80% 65%,
+			rgba(180, 120, 255, 0.16) 0%,
+			transparent 55%
+		),
+		radial-gradient(
+			ellipse at 50% 50%,
+			rgba(140, 90, 200, 0.12) 0%,
+			transparent 60%
+		),
+		linear-gradient(
+			135deg,
+			#1a0826 0%,
+			#2b0f3a 40%,
+			#3a144d 70%,
+			#2a0c35 100%
+		);
+	animation: ambient-float 20s ease-in-out infinite;
+}
+
 
 	@keyframes ambient-float {
 		0%, 100% {
