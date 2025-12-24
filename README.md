@@ -1,4 +1,4 @@
-# Made By HitBoyXx23 Stupid Zach wants credit he owner of Navine
+# Made By HitBoyXx23 And Zach
 # All Right Reserved By Navine
  lossless-ui
 
