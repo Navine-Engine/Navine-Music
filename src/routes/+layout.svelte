@@ -95,7 +95,7 @@
 		},
 		{
 			value: 'LOW',
-			label: '67 hahahaha 96kbps AAC',
+			label: '96kbps AAC',
 			description: 'Data saver AAC streaming'
 		}
 	];
