@@ -1,4 +1,5 @@
-# Made By HitBoyXx23 And Zach
+# Made By HitBoyXx23 And Zach 
+Zachs Discord https://discord.com/users/1289315440392405008 HitBoyXx23 Discord https://discord.com/users/1114586353116647444
 # All Right Reserved By Navine
  lossless-ui
 
